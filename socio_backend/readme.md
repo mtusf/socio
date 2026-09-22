@@ -1,2 +1,2 @@
-# Scio backend is a social web app
+# Socio backend is a social web app
 
