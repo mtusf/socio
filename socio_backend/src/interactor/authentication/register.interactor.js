@@ -1,4 +1,4 @@
-import ApiError from "../../utils/apiError.js"
+
 
 function createRegisterInteractor(
     existedUser,
@@ -9,12 +9,15 @@ function createRegisterInteractor(
     const execute = async (fullName, username, email, password, avatarLocalPath, coverImageLocalPath) => {
         const existingUser = await existedUser(username, email);
         if (existingUser) {
-            throw new ApiError(409, "username or email already existed");
+            const error = new Error("username or email already exists");
+            error.status = 409;
+            throw error
         }
+
         const avatar = await uploadeOnCloudinary(avatarLocalPath)
-        
+
         const coverImage = await uploadeOnCloudinary(coverImageLocalPath)
-       
+
         const user = await createUser(
             fullName,
             username,

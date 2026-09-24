@@ -1,4 +1,4 @@
-import ApiError from "../utils/apiError.js";
+import ApiError from "../../utils/apiError.js";
 const checkAvatar = async(req,res,next)=>{
     const avatarLocalPath = req.files?.avatar[0]?.path
     if(!avatarLocalPath){

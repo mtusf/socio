@@ -1,4 +1,4 @@
-import { User } from "../src/models/user.model.js";
+import { User } from "../models/user.model.js";
 const createdUser = async(_id)=>{
 const result = await User.findById(_id).select(
     "-password -refreshToken"

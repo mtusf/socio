@@ -1,7 +1,9 @@
 import asyncHandler from "../utils/asyncHandler.js";
-import registerInteractor from "../../dependencies/authentication/register.di.js";
+import ApiError from "../utils/apiError.js";
+import registerInteractor from "../dependencies/authentication/register.di.js";
 const registerUser = asyncHandler(async (req, res) => {
-    const { fullName, username, email, password } = req.body;
+    try {
+         const { fullName, username, email, password } = req.body;
 
     const avatarLocalPath = req.files?.avatar[0]?.path;
     let coverImageLocalPath;
@@ -14,6 +16,10 @@ const registerUser = asyncHandler(async (req, res) => {
         message: result.message,
         user: result.user
     })
+    } catch (error) {
+      throw new ApiError(error.status, error.message);
+    }
+   
 
 });
 
